@@ -12,5 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-exclude:
+output "role_arn" {
+  value       = module.irsa.iam_role_arn
+  description = "Amazon Resource Name for FSX CSI Driver"
+}
