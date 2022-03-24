@@ -4,9 +4,9 @@
 
 This module consists of the following submodules:
 
-- [ebs-csi-driver](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/ebs)
-- [efs-csi-driver](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/efs)
-- [fsx-csi-driver](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/fsx)
-- [secret-store-csi-driver](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/secret-store)
+- [ebs](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/ebs)
+- [efs](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/efs)
+- [fsx](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/fsx)
+- [secret-store](https://github.com/nlamirault/terraform-aws-eks-csi-driver/tree/master/modules/secret-store)
 
 See more details in each module's README.
