@@ -13,7 +13,7 @@
 # limitations under the License.
 
 #############################################################################
-# Grafana
+# EFS CSI Driver
 
 variable "cluster_name" {
   type        = string
