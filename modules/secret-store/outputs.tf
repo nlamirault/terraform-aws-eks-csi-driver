@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  service_name = format("%s-efs-csi-driver", var.cluster_name)
+output "role_arn" {
+  value       = module.irsa.iam_role_arn
+  description = "Amazon Resource Name for EFS CSI Driver"
 }

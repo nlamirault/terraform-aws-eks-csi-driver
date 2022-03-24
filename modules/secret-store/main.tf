@@ -12,6 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  service_name = format("%s-fsx-csi-driver", var.cluster_name)
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.14.0"
+    }
+  }
 }

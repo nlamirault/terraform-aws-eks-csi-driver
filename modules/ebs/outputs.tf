@@ -14,5 +14,5 @@
 
 output "role_arn" {
   value       = module.irsa.iam_role_arn
-  description = "Amazon Resource Name for EFS CSI Driver"
+  description = "Amazon Resource Name for EBS CSI Driver"
 }

@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  service_name = format("%s-ebs-csi-driver", var.cluster_name)
+data "aws_eks_cluster" "this" {
+  name = var.cluster_name
 }

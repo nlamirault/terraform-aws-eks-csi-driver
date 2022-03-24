@@ -54,13 +54,13 @@ tags = {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_irsa_efs"></a> [irsa\_efs](#module\_irsa\_efs) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 4.14.0 |
+| <a name="module_irsa"></a> [irsa](#module\_irsa) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 4.14.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_policy.efs_csi_driver_controller](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.csi_driver_controller](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_eks_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 
 ## Inputs
@@ -69,10 +69,11 @@ tags = {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The Kubernetes namespace | `string` | `"kube-system"` | no |
-| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | The name of the EFS CSI driver IAM role | `string` | `"efs-csi-driver-controller"` | no |
-| <a name="input_role_policy_name"></a> [role\_policy\_name](#input\_role\_policy\_name) | The prefix of the EFS CSI driver IAM policy | `string` | `"AmazonEKS_EFS_CSI_Driver_Policy"` | no |
-| <a name="input_service_account"></a> [service\_account](#input\_service\_account) | The Kubernetes service account | `string` | `"efs-csi-controller"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags for EFS CSI Driver | `map(string)` | <pre>{<br>  "Made-By": "terraform"<br>}</pre> | no |
+| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | The name of the Secret Store CSI driver IAM role | `string` | `"secret-store-csi-driver-controller"` | no |
+| <a name="input_role_policy_name"></a> [role\_policy\_name](#input\_role\_policy\_name) | The prefix of the Secret Store CSI driver IAM policy | `string` | `"AmazonEKS_SecretStore_CSI_Driver_Policy"` | no |
+| <a name="input_secrets_data"></a> [secrets\_data](#input\_secrets\_data) | Secret Store CSI Driver data | <pre>list(object({<br>    name      = string<br>    prefix    = string<br>    namespace = string<br>    sa_name   = string<br>  }))</pre> | `[]` | no |
+| <a name="input_service_account"></a> [service\_account](#input\_service\_account) | The Kubernetes service account | `string` | `"secret-store-csi-driver-controller"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags for Secret Store CSI Driver | `map(string)` | <pre>{<br>  "Made-By": "terraform"<br>}</pre> | no |
 
 ## Outputs
 

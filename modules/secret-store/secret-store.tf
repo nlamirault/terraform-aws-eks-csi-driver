@@ -12,33 +12,51 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "aws_iam_policy" "ebs_csi_driver_controller" {
-  name        = var.role_policy_name
-  description = format("Allow CSI Driver to manage AWS EBS resources")
+resource "aws_iam_policy" "csi_driver_controller" {
+  for_each = toset(var.secrets_data)
+
+  name        = format("%s-%s", var.role_policy_name, each.value.name)
+  description = format("Allow %s with CSI Driver to manage AWS Secret Manager resources", each.value.name)
   path        = "/"
 
-  #tfsec:ignore:AWS099
-  policy = file("${path.module}/driver_policy.json")
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ],
+        "Resource" : [
+          "arn:*:secretsmanager:*:*:secret:${each.value.prefix}/*"
+        ]
+      }
+    ]
+  })
 
   tags = merge(
-    { "Name" = var.role_policy_name },
+    { "Name" = local.service_name },
     var.tags
   )
 }
 
-module "irsa_ebs" {
+
+module "irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version = "4.14.0"
 
+  for_each = toset(var.secrets_data)
+
   create_role                   = true
-  role_description              = "EBS CSI Driver Role"
-  role_name                     = var.role_name
+  role_description              = "Secret Store CSI Driver Role"
+  role_name                     = format("%s-%s", var.role_name, each.value.name)
   provider_url                  = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
-  role_policy_arns              = [aws_iam_policy.ebs_csi_driver_controller.arn]
+  role_policy_arns              = [aws_iam_policy.secret_store_csi_driver_controller[count.index].arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:${var.namespace}:${var.service_account}"]
 
   tags = merge(
-    { "Name" = var.role_name },
+    { "Name" = format("%s-%s", var.role_name, each.value.name) },
     var.tags
   )
 }

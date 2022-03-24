@@ -32,6 +32,18 @@ variable "service_account" {
   default     = "fsx-csi-controller"
 }
 
+variable "role_name" {
+  description = "The name of the FSX CSI driver IAM role"
+  type        = string
+  default     = "fsx-csi-driver-controller"
+}
+
+variable "role_policy_name" {
+  description = "The prefix of the FSX CSI driver IAM policy"
+  default     = "AmazonEKS_FSX_CSI_Driver_Policy"
+  type        = string
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags for FSX CSI Driver"

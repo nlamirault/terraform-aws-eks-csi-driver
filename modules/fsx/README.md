@@ -69,6 +69,8 @@ tags = {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The Kubernetes namespace | `string` | `"kube-system"` | no |
+| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | The name of the FSX CSI driver IAM role | `string` | `"fsx-csi-driver-controller"` | no |
+| <a name="input_role_policy_name"></a> [role\_policy\_name](#input\_role\_policy\_name) | The prefix of the FSX CSI driver IAM policy | `string` | `"AmazonEKS_FSX_CSI_Driver_Policy"` | no |
 | <a name="input_service_account"></a> [service\_account](#input\_service\_account) | The Kubernetes service account | `string` | `"fsx-csi-controller"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags for FSX CSI Driver | `map(string)` | <pre>{<br>  "Made-By": "terraform"<br>}</pre> | no |
 

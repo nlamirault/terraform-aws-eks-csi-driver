@@ -13,7 +13,7 @@
 # limitations under the License.
 
 resource "aws_iam_policy" "efs_csi_driver_controller" {
-  name        = local.service_name
+  name        = var.role_policy_name
   description = format("Allow CSI Driver to manage AWS EFS resources")
   path        = "/"
 
@@ -21,7 +21,7 @@ resource "aws_iam_policy" "efs_csi_driver_controller" {
   policy = file("${path.module}/driver_policy.json")
 
   tags = merge(
-    { "Name" = local.service_name },
+    { "Name" = var.role_policy_name },
     var.tags
   )
 }
@@ -32,13 +32,13 @@ module "irsa_efs" {
 
   create_role                   = true
   role_description              = "EFS CSI Driver Role"
-  role_name                     = local.service_name
+  role_name                     = var.role_name
   provider_url                  = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
   role_policy_arns              = [aws_iam_policy.efs_csi_driver_controller.arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:${var.namespace}:${var.service_account}"]
 
   tags = merge(
-    { "Name" = local.service_name },
+    { "Name" = var.role_name },
     var.tags
   )
 }

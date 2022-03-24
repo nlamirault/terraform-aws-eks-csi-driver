@@ -32,6 +32,18 @@ variable "service_account" {
   default     = "ebs-csi-controller"
 }
 
+variable "role_name" {
+  description = "The name of the EBS CSI driver IAM role"
+  type        = string
+  default     = "ebs-csi-driver-controller"
+}
+
+variable "role_policy_name" {
+  description = "The prefix of the EBS CSI driver IAM policy"
+  type        = string
+  default     = "AmazonEKS_EBS_CSI_Driver_Policy"
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags for EBS CSI Driver"

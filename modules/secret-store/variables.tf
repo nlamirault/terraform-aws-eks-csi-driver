@@ -29,25 +29,35 @@ variable "namespace" {
 variable "service_account" {
   type        = string
   description = "The Kubernetes service account"
-  default     = "efs-csi-controller"
+  default     = "secret-store-csi-driver-controller"
 }
 
 variable "role_name" {
-  description = "The name of the EFS CSI driver IAM role"
+  description = "The name of the Secret Store CSI driver IAM role"
   type        = string
-  default     = "efs-csi-driver-controller"
+  default     = "secret-store-csi-driver-controller"
 }
 
 variable "role_policy_name" {
-  description = "The prefix of the EFS CSI driver IAM policy"
-  default     = "AmazonEKS_EFS_CSI_Driver_Policy"
+  description = "The prefix of the Secret Store CSI driver IAM policy"
+  default     = "AmazonEKS_SecretStore_CSI_Driver_Policy"
   type        = string
 }
 
+variable "secrets_data" {
+  description = "Secret Store CSI Driver data"
+  type = list(object({
+    name      = string
+    prefix    = string
+    namespace = string
+    sa_name   = string
+  }))
+  default = []
+}
 
 variable "tags" {
   type        = map(string)
-  description = "Tags for EFS CSI Driver"
+  description = "Tags for Secret Store CSI Driver"
   default = {
     "Made-By" = "terraform"
   }
