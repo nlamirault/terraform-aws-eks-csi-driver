@@ -42,19 +42,19 @@ tags = {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.14.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.14.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_irsa_efs"></a> [irsa\_efs](#module\_irsa\_efs) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 4.14.0 |
+| <a name="module_irsa_efs"></a> [irsa\_efs](#module\_irsa\_efs) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 5.0.0 |
 
 ## Resources
 
